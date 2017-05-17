@@ -4,14 +4,14 @@ from rest_framework.generics import CreateAPIView, GenericAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from users.serializers import UserRegistrationSerializer, UserLoginSerializer, TokenSerializer
-
+from django.contrib.auth import hashers
 
 class UserRegistrationAPIView(CreateAPIView):
     authentication_classes = ()
     permission_classes = ()
     serializer_class = UserRegistrationSerializer
 
-    def create(self, request, *args, **kwargs):
+    def create(self, request, *args, **kwargs):       
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)

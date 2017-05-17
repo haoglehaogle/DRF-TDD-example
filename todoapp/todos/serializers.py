@@ -11,6 +11,12 @@ class TodoUserSerializer(serializers.ModelSerializer):
 
 
 class TodoSerializer(serializers.ModelSerializer):
+    
+    def create(self, validated_data):
+        print "create"
+    def validate(self, attrs):
+        print "validate"
+        
     user = TodoUserSerializer(read_only=True)
 
     class Meta:
